@@ -1,24 +1,41 @@
 import logo from './logo.svg';
 import './App.css';
+import BlogEntry from "./BlogEntry";
+// import './BlogEntry.js';
 
 function App() {
+  // Variables
+  // const firstStudent = "Horst";
+  const students = [
+      {
+        id: "1",
+        name:"Franky",
+        university: "Trier"
+  },
+    {
+        id: "2",
+        name:"Franzi",
+        university: "Bochum"
+  },
+    {
+        id: "3",
+        name:"Maria",
+        university: "Hamburg"
+  },
+    {
+        id: "4",
+        name:"Horst",
+        university: "Grevenbroich"
+  }
+  ]
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div>
+      {students.map(student => <BlogEntry key={student.id}
+                                          id={"ID: " + student.id}
+                                          name={"Name: " + student.name}
+                                          university={"University: " + student.university}/>)}
+      </div>
   );
 }
 
