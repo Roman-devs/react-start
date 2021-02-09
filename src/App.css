@@ -37,6 +37,15 @@
   }
 }
 
+@keyframes entrySlide {
+  from {background-color: #0f2be7;
+    transform: translateX(100%) rotate(45deg) rotate3d(75,85,95,35deg);
+  }
+  to {background-color: salmon;
+    transform: translateX(0px) rotate(-720deg) rotate3d(0,0,0,0deg);
+  }
+}
+
 .name {
   margin: 5px 5px;
   padding: 15px;
@@ -58,7 +67,10 @@
   border-radius: 40px;
   -moz-border-radius: 40px;
   -webkit-border-radius: 40px;
-
+  animation-name: entrySlide;
+  animation-duration: 2s;
 }
+
+
 
 
