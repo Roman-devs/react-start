@@ -37,7 +37,28 @@
   }
 }
 
-.test {
-  background-color: firebrick;
+.name {
+  margin: 5px 5px;
+  padding: 15px;
   text-align: center;
+  background: #c5cae7;
+  border: 1px solid #FFF;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  box-shadow: 1px 2px 4px rgba(124, 99, 99, 0.4);
 }
+
+.entry {
+  margin: 5px 5px;
+  padding: 25px;
+  -moz-box-shadow: inset 0 0 15px 5px #DDD;
+  -webkit-box-shadow: inset 0 0 15px 5px #DDDDE5;
+  box-shadow: inset 0 0 15px 5px #DDD;
+  border-radius: 40px;
+  -moz-border-radius: 40px;
+  -webkit-border-radius: 40px;
+
+}
+
+

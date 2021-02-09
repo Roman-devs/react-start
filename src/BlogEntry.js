@@ -1,3 +1,3 @@
 export default function BlogEntry({id, name, university}){
-    return(<article> <h3 class={"test"}> {name} </h3> <p> {id} </p> <p> {university} </p></article>)
+    return(<article> <h3 class={"name"}> {name} </h3> <div class={"entry"}><p> {id} </p> <p> {university} </p></div></article>)
 }
