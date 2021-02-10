@@ -40,7 +40,13 @@ function App() {
                     {students.map(student => <BlogEntry key={student.id}
                                                         id={"ID: " + student.id}
                                                         name={"Name: " + student.name}
-                                                        university={"University: " + student.university}/>)}
+                                                        university={"University: " + student.university}
+                                                        onDelete={()=>
+                                                            { const updatedList = students.filter(item => item.id !== student.id);
+                                                            setStudents(updatedList);
+                                                            }
+                                                        }/>)
+                    }
 
                     <Button primary onClick={() => setStudents([
                             {
@@ -63,8 +69,22 @@ function App() {
                                 name: "Horst",
                                 university: "Grevenbroich"
                             }
-                        ])}>SPIN 'EM IN!</Button>
-                    <Button>  Second Button </Button>
+                        ])}>SPIN 'EM IN!
+                    </Button>
+
+                    <Button primary onClick={() => {
+                        const updatedList = [
+                            ...students,
+                            {id: "new-id",
+                            name: "new student",
+                            university: "super uni"}
+                            ];
+                        setStudents(updatedList);
+                    }
+                    }> Add new Gesicht
+                    </Button>
+
+
                 </div>
         </React.Fragment>
     );

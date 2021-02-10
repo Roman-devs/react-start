@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {Button} from "./FancyButton";
 
-export default function BlogEntry({id, name, university}) {
+export default function BlogEntry({id, name, university, onDelete}) {
     const [clicked, setClicked] = useState(0)
 
     return (
@@ -13,6 +13,7 @@ export default function BlogEntry({id, name, university}) {
                 <p> {"Likes: " + clicked} </p>
                 <Button onClick={() => setClicked(clicked + 1)}> Like </Button>
                 <Button primary onClick={() => setClicked(clicked - 1)}> Dislike </Button>
+                <Button onClick = {onDelete}> Delete </Button>
             </div>
         </article>
     )
