@@ -3,6 +3,7 @@ import './App.css';
 import BlogEntry from "./components/BlogEntry";
 import {Button} from "./components/FancyButton";
 import React, { useState } from 'react';
+import AddStudentForm from "./components/AddStudentForm";
 
 function App() {
     // Variables
@@ -35,7 +36,7 @@ function App() {
     return (
         // Alles in ein TAG! --> Fragment REACT -> LOOK IT UP
         <React.Fragment>
-            <h2 class={"multi"}>Gesichtsbuch 2.0</h2>
+            <h2 className={"multi"}>Gesichtsbuch 2.0</h2>
                 <div>
                     {students.map(student => <BlogEntry key={student.id}
                                                         id={"ID: " + student.id}
@@ -72,17 +73,21 @@ function App() {
                         ])}>SPIN 'EM IN!
                     </Button>
 
-                    <Button primary onClick={() => {
-                        const updatedList = [
-                            ...students,
-                            {id: "new-id",
-                            name: "new student",
-                            university: "super uni"}
-                            ];
-                        setStudents(updatedList);
-                    }
-                    }> Add new Gesicht
-                    </Button>
+                    <AddStudentForm onAdd={
+                        newStudent => setStudents([...students, newStudent])
+                    }> Add new human! </AddStudentForm>
+
+                    {/*<Button primary onClick={() => {*/}
+                    {/*    const updatedList = [*/}
+                    {/*        ...students,*/}
+                    {/*        {id: "new-id",*/}
+                    {/*        name: "new student",*/}
+                    {/*        university: "super uni"}*/}
+                    {/*        ];*/}
+                    {/*    setStudents(updatedList);*/}
+                    {/*}*/}
+                    {/*}> Add new human!*/}
+                    {/*</Button>*/}
 
 
                 </div>

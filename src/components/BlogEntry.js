@@ -6,8 +6,8 @@ export default function BlogEntry({id, name, university, onDelete}) {
 
     return (
         <article>
-            <h3 class={"name"}> {name} </h3>
-            <div class={"entry"}>
+            <h3 className={"name"}> {name} </h3>
+            <div className={"entry"}>
                 <p> {id} </p>
                 <p> {university} </p>
                 <p> {"Likes: " + clicked} </p>
