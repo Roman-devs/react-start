@@ -1,47 +1,70 @@
 import logo from './logo.svg';
-import React from "react";
 import './App.css';
 import BlogEntry from "./components/BlogEntry";
 import {Button} from "./components/FancyButton";
+import React, { useState } from 'react';
 
 function App() {
     // Variables
     // const firstStudent = "Horst";
-    const students = [
-        {
-            id: "1",
-            name: "Franky",
-            university: "Trier"
-        },
-        {
-            id: "2",
-            name: "Franzi",
-            university: "Bochum"
-        },
-        {
-            id: "3",
-            name: "Maria",
-            university: "Hamburg"
-        },
-        {
-            id: "4",
-            name: "Horst",
-            university: "Grevenbroich"
-        }
-    ]
+    let students, setStudents;
+    [students, setStudents] = useState([]);
+    // const students = [
+    //     {
+    //         id: "1",
+    //         name: "Franky",
+    //         university: "Trier"
+    //     },
+    //     {
+    //         id: "2",
+    //         name: "Franzi",
+    //         university: "Bochum"
+    //     },
+    //     {
+    //         id: "3",
+    //         name: "Maria",
+    //         university: "Hamburg"
+    //     },
+    //     {
+    //         id: "4",
+    //         name: "Horst",
+    //         university: "Grevenbroich"
+    //     }
+    // ]
 
     return (
         // Alles in ein TAG! --> Fragment REACT -> LOOK IT UP
         <React.Fragment>
-            <header>MULTIBLOG</header>
+            <h2 class={"multi"}>Gesichtsbuch 2.0</h2>
                 <div>
                     {students.map(student => <BlogEntry key={student.id}
                                                         id={"ID: " + student.id}
                                                         name={"Name: " + student.name}
                                                         university={"University: " + student.university}/>)}
 
-                    <Button primary>This is a primary Button</Button>
-                    <Button>  This is a normal Button </Button>
+                    <Button primary onClick={() => setStudents([
+                            {
+                                id: "1",
+                                name: "Franky",
+                                university: "Trier"
+                            },
+                            {
+                                id: "2",
+                                name: "Franzi",
+                                university: "Bochum"
+                            },
+                            {
+                                id: "3",
+                                name: "Maria",
+                                university: "Hamburg"
+                            },
+                            {
+                                id: "4",
+                                name: "Horst",
+                                university: "Grevenbroich"
+                            }
+                        ])}>SPIN 'EM IN!</Button>
+                    <Button>  Second Button </Button>
                 </div>
         </React.Fragment>
     );

@@ -1,3 +1,23 @@
-export default function BlogEntry({id, name, university}){
-    return(<article> <h3 class={"name"}> {name} </h3> <div class={"entry"}><p> {id} </p> <p> {university} </p></div></article>)
+import {useState} from "react";
+import {Button} from "./FancyButton";
+
+export default function BlogEntry({id, name, university}) {
+    const [clicked, setClicked] = useState(0)
+
+    return (
+        <article>
+            <h3 class={"name"}> {name} </h3>
+            <div class={"entry"}>
+                <p> {id} </p>
+                <p> {university} </p>
+                <p> {"Likes: " + clicked} </p>
+                <Button onClick={() => setClicked(clicked + 1)}> Like </Button>
+                <Button primary onClick={() => setClicked(clicked - 1)}> Dislike </Button>
+            </div>
+        </article>
+    )
+
+
 }
+
+
