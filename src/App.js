@@ -41,6 +41,7 @@ function App() {
 
 
                     <Button onClick={ () => setSelectedStudentID(selectedStudentID + 1)}> Next ID </Button>
+                    <Button onClick={ () => setSelectedStudentID(selectedStudentID - 1)}> Previous ID </Button>
 
                     <StudentEntry email={studentsAPI.email} id={studentsAPI.id} name={studentsAPI.name} />
 
