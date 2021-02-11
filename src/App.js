@@ -12,6 +12,7 @@ function App() {
 
     const [studentsAPI, setStudentsAPI] = useState({});
     const [selectedStudentID, setSelectedStudentID] = useState(1);
+    const [isLoading, setIsLoading] = useState(false);
 
     function loadStudentsFromApi(){
         getStudentsFromApi().then(data => setStudentsAPI(data));
@@ -20,8 +21,11 @@ function App() {
     /////////////////////////////////////////////////////////
 
     useEffect(()=> {
+        setIsLoading(true)
     axios.get("https://jsonplaceholder.typicode.com/users/"+selectedStudentID)
         .then(response => setStudentsAPI(response.data))
+        .then(() => setIsLoading(false))
+        .catch(()=> setIsLoading(false));
     },[selectedStudentID])
 
 
@@ -32,18 +36,30 @@ function App() {
     /////////////////////////////////////////////////////////
 
     return (
+
         // Alles in ein TAG! --> Fragment REACT -> LOOK IT UP
         <React.Fragment>
             <h2 className={"multi"}>Gesichtsbuch 2.0</h2>
-                <div>
+            <div>
+                {isLoading && <div className="lds-ellipsis">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>}
 
 
 
 
-                    <Button onClick={ () => setSelectedStudentID(selectedStudentID + 1)}> Next ID </Button>
-                    <Button onClick={ () => setSelectedStudentID(selectedStudentID - 1)}> Previous ID </Button>
 
-                    <StudentEntry email={studentsAPI.email} id={studentsAPI.id} name={studentsAPI.name} />
+
+
+                    {!isLoading && studentsAPI &&
+                    <Button disabled={isLoading} onClick={ () => setSelectedStudentID(selectedStudentID + 1)}> Next ID </Button>}
+                {!isLoading && studentsAPI &&
+                    <Button onClick={ () => setSelectedStudentID(selectedStudentID - 1)}> Previous ID </Button>}
+                {!isLoading && studentsAPI &&
+                    <StudentEntry email={studentsAPI.email} id={studentsAPI.id} name={studentsAPI.name}/>}
 
 
 
