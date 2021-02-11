@@ -4,12 +4,21 @@ import BlogEntry from "./components/BlogEntry";
 import {Button} from "./components/FancyButton";
 import React, { useState } from 'react';
 import AddStudentForm from "./components/AddStudentForm";
+import {getAdressFromStudents, getStudentsFromApi} from "./services/getStudentsFromApi";
+import axios from "axios";
+import StudentEntry from "./components/StudentEntryAPI";
 
 function App() {
     // Variables
     // const firstStudent = "Horst";
-    let students, setStudents;
-    [students, setStudents] = useState([]);
+    const [students, setStudents] = useState([]);
+    const [studentsAPI, setStudentsAPI] = useState([]);
+
+    // const axiosResponse = getStudentsFromApi().then(response => { console.log(response.data); setStudents(response.data)})
+    function loadStudentsFromApi(){
+    getStudentsFromApi().then(data => setStudentsAPI([...students, ...data]));
+    }
+
     // const students = [
     //     {
     //         id: "1",
@@ -41,11 +50,24 @@ function App() {
                     {students.map(student => <BlogEntry key={student.id}
                                                         id={"ID: " + student.id}
                                                         name={"Name: " + student.name}
-                                                        university={"University: " + student.university}
+                                                        university={"Uni: " + student.university}
                                                         onDelete={()=>
                                                             { const updatedList = students.filter(item => item.id !== student.id);
                                                             setStudents(updatedList);
                                                             }
+                                                        }/>)
+                    }
+
+                    {studentsAPI.map(studentAPI => <StudentEntry key={studentAPI.id}
+                                                        id={"ID: " + studentAPI.id}
+                                                        name={"Name: " + studentAPI.name}
+                                                        email={"Email: " + studentAPI.email}
+                                                        phone={"phone: " + studentAPI.phone}
+                                                        adress={"Adress: " + studentAPI.adress}
+                                                                 onDelete={()=>
+                                                        { const updatedList = studentsAPI.filter(item => item.id !== studentAPI.id);
+                                                            setStudentsAPI(updatedList);
+                                                        }
                                                         }/>)
                     }
 
@@ -76,6 +98,8 @@ function App() {
                     <AddStudentForm onAdd={
                         newStudent => setStudents([...students, newStudent])
                     }> Add new human! </AddStudentForm>
+
+                    <Button onClick={ () => loadStudentsFromApi()}> Get Students From API </Button>
 
                     {/*<Button primary onClick={() => {*/}
                     {/*    const updatedList = [*/}
